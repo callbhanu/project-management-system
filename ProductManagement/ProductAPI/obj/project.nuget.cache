@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "G+6Ia8PPKYO0KKr4aNhQJoZBBDvITh8fCBhjj1DKHIp9a2oM5AowzVgI+G/7+rQ8vObFvUnfMtyMRRAymTPRDg==",
+  "dgSpecHash": "noRg7PrTYzCEGrJwUw2FvKkR/4pO2K54nKewh9PaRL+osUZWGW3qdgFxG5MA4QEDDbKr1vE5Oe91RSE1d7VzgQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\bhanu.gadi\\Desktop\\ProductManagement\\ProductManagement\\ProductAPI\\ProductAPI.csproj",
+  "projectFilePath": "C:\\Users\\bhanu.gadi\\Desktop\\ProductManagement\\project-management-system\\ProductManagement\\ProductAPI\\ProductAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\bhanu.gadi\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\bhanu.gadi\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

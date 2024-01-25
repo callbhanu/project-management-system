@@ -3429,11 +3429,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\bhanu.gadi\\Desktop\\ProductManagement\\ProductManagement\\ProductAPI\\ProductAPI.csproj",
+      "projectUniqueName": "C:\\Users\\bhanu.gadi\\Desktop\\ProductManagement\\project-management-system\\ProductManagement\\ProductAPI\\ProductAPI.csproj",
       "projectName": "ProductAPI",
-      "projectPath": "C:\\Users\\bhanu.gadi\\Desktop\\ProductManagement\\ProductManagement\\ProductAPI\\ProductAPI.csproj",
+      "projectPath": "C:\\Users\\bhanu.gadi\\Desktop\\ProductManagement\\project-management-system\\ProductManagement\\ProductAPI\\ProductAPI.csproj",
       "packagesPath": "C:\\Users\\bhanu.gadi\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\bhanu.gadi\\Desktop\\ProductManagement\\ProductManagement\\ProductAPI\\obj\\",
+      "outputPath": "C:\\Users\\bhanu.gadi\\Desktop\\ProductManagement\\project-management-system\\ProductManagement\\ProductAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

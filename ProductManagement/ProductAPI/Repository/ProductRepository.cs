@@ -76,29 +76,16 @@ namespace ProductAPI.Repository
 
         public async Task<Product> AddProductAsync(Product product)
         {
-            try
-            {
                 _dbContext.Products.Add(product);
                 await _dbContext.SaveChangesAsync();
                 return await GetProductByIdAsync(product.ProductId);
-            }
-            catch (Exception ex) 
-            {
-                return null;
-            }
         }
 
         public async Task UpdateProductAsync(Product product)
         {
-            try
-            {
                 _dbContext.Products.Update(product);
                 await _dbContext.SaveChangesAsync();
-            }
-            catch(Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+           
         }
 
         public async Task DeleteProductAsync(Product product)

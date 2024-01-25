@@ -103,8 +103,6 @@ namespace ProductAPI.Controllers
             {
                 return NotFound();
             }
-
-            // Update properties of the existing product
             existingProduct.Name = updatedProduct.Name;
             existingProduct.Quantity = updatedProduct.Quantity;
             existingProduct.Price = updatedProduct.Price;
@@ -114,7 +112,7 @@ namespace ProductAPI.Controllers
             existingProduct.SubCategory.CategoryId = updatedProduct.SubCategory.CategoryId;
             await _productRepository.UpdateProductAsync(existingProduct);
 
-            return NoContent(); // HTTP 204 - No content (successful update)
+            return NoContent(); // HTTP 204 - No content & successful update
         }
         #endregion
 
@@ -127,11 +125,8 @@ namespace ProductAPI.Controllers
                 return BadRequest(); // HTTP 400 - Bad request
             }
 
-            // Optionally, you can perform validation on the newProduct before adding it to the database
-
             var createdProduct = await _productRepository.AddProductAsync(newProduct);
 
-            // Return the created product and a 201 Created status
             return Ok();
 
         }
