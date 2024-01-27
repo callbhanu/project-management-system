@@ -5,6 +5,7 @@ using ProductAPI.Repository;
 using Microsoft.EntityFrameworkCore;
 using ProductAPI.Repository.Contracts;
 using ProductAPI.Middleware;
+using Microsoft.AspNetCore.Http.Features;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,10 +15,19 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+builder.Services.Configure<FormOptions>(options =>
+{
+    options.MemoryBufferThreshold = Int32.MaxValue;
+    options.ValueLengthLimit = Int32.MaxValue;
+    options.MultipartBodyLengthLimit = Int32.MaxValue;
+});
+
 
 IMapper mapper = MappingConfig.RegisterMap().CreateMapper();
 builder.Services.AddSingleton(mapper);
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+
 
 builder.Services.AddControllers();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
@@ -44,7 +54,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseStaticFiles();
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 app.UseCors();
 app.UseHttpsRedirection();

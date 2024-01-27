@@ -178,3 +178,4 @@ C:\Users\bhanu.gadi\Desktop\ProductManagement\project-management-system\ProductM
 C:\Users\bhanu.gadi\Desktop\ProductManagement\project-management-system\ProductManagement\ProductAPI\obj\Debug\net6.0\ProductAPI.pdb
 C:\Users\bhanu.gadi\Desktop\ProductManagement\project-management-system\ProductManagement\ProductAPI\obj\Debug\net6.0\ProductAPI.genruntimeconfig.cache
 C:\Users\bhanu.gadi\Desktop\ProductManagement\project-management-system\ProductManagement\ProductAPI\obj\Debug\net6.0\ref\ProductAPI.dll
+C:\Users\bhanu.gadi\Desktop\ProductManagement\project-management-system\ProductManagement\ProductAPI\bin\Debug\net6.0\ProductAPI.staticwebassets.runtime.json

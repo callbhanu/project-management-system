@@ -1,10 +1,8 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using ProductAPI.Dto;
 using ProductAPI.Models;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using ProductAPI.Repository.Contracts;
-using ProductAPI.Repository;
 
 namespace ProductAPI.Controllers
 {
@@ -31,34 +29,14 @@ namespace ProductAPI.Controllers
             return Ok(productDetails);
         }
 
-        [HttpGet("GetAllCategories")]
-        public ActionResult<IEnumerable<CategoryDto>> GetCategories()
-        {
-            var categories = _productRepository.GetAllCategoriesAsync();
-            var categoriesList = categories.Result.Select(c => _mapper.Map<CategoryDto>(c)).ToList();
-            return Ok(categoriesList);
-        }
-
-        [HttpGet("GetAllSubCategories")]
-        public ActionResult<IEnumerable<SubCategoryDto>> GetSubCategories()
-        {
-            var subCategories = _productRepository.GetAllSubCategoriesAsync();
-            var subCategoriesList = subCategories.Result.Select(c => _mapper.Map<SubCategoryDto>(c)).ToList();
-            return Ok(subCategoriesList);
-        }
-
-        [HttpGet("GetSubCategoriesById/{categoryId}")]
-        public ActionResult<IEnumerable<SubCategoryDto>> GetSubCategoriesById(int categoryId)
-        {
-            var subCategories = _productRepository.GetSubCategoriesByIdAsync(categoryId);
-            var subCategoriesList = subCategories.Result.Select(c => _mapper.Map<SubCategoryDto>(c)).ToList();
-            return Ok(subCategoriesList);
-        }
-
         [HttpGet("GetProductById/{id}")]
         public ActionResult<ProductDetailsDto> GetProductById(int id)
         {
             var product = _productRepository.GetProductByIdAsync(id).Result;
+            if (product == null)
+            {
+                return NotFound();
+            }
             var productDetails = _mapper.Map<ProductDetailsDto>(product);
             return Ok(productDetails);
 
@@ -95,7 +73,7 @@ namespace ProductAPI.Controllers
         #region PUT
 
         [HttpPut("UpdateProduct/{productId}")]
-        public async Task<IActionResult> UpdateProduct(int productId, [FromBody] Product updatedProduct)
+        public async Task<IActionResult> UpdateProduct(int productId, [FromForm] ProductCreateDto updatedProduct)
         {
             var existingProduct = await _productRepository.GetProductByIdAsync(productId);
 
@@ -107,9 +85,13 @@ namespace ProductAPI.Controllers
             existingProduct.Quantity = updatedProduct.Quantity;
             existingProduct.Price = updatedProduct.Price;
             existingProduct.Description = updatedProduct.Description;
-            existingProduct.ImageUrl = updatedProduct.ImageUrl;
+            if(updatedProduct.Image != null)
+            {
+                existingProduct.ImageUrl = await SaveImage(0, updatedProduct.Image);
+            }
+            
             existingProduct.SubCategoryId = updatedProduct.SubCategoryId;
-            existingProduct.SubCategory.CategoryId = updatedProduct.SubCategory.CategoryId;
+            existingProduct.CategoryId = updatedProduct.CategoryId;
             await _productRepository.UpdateProductAsync(existingProduct);
 
             return NoContent(); // HTTP 204 - No content & successful update
@@ -118,14 +100,20 @@ namespace ProductAPI.Controllers
 
         #region POST
         [HttpPost("AddProduct")]
-        public async Task<IActionResult> CreateProduct([FromBody] Product newProduct)
+        public async Task<IActionResult> CreateProduct([FromForm] ProductCreateDto newProduct)
         {
             if (newProduct == null)
             {
                 return BadRequest(); // HTTP 400 - Bad request
             }
+            if (newProduct.Image != null)
+            {
+                newProduct.ImageUrl = await SaveImage(0, newProduct.Image);
+            }
 
-            var createdProduct = await _productRepository.AddProductAsync(newProduct);
+            var product = _mapper.Map<Product>(newProduct);
+
+            var createdProduct = await _productRepository.AddProductAsync(product);
 
             return Ok();
 
@@ -147,5 +135,53 @@ namespace ProductAPI.Controllers
             return NoContent(); // HTTP 204 - No content (successful delete)
         }
         #endregion
+
+        private async Task<string> SaveImage(int productId, IFormFile image)
+        {
+            // Save the image to a directory (you might want to customize the path)
+            string uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads");
+            if (!Directory.Exists(uploadsFolder))
+            {
+                Directory.CreateDirectory(uploadsFolder);
+            }
+
+            string uniqueFileName = $"{productId}_{Guid.NewGuid().ToString()}_{image.FileName}";
+            string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+            using (var fileStream = new FileStream(filePath, FileMode.Create))
+            {
+                await image.CopyToAsync(fileStream);
+            }
+
+            // Return the relative path to the saved image
+            return $"/uploads/{uniqueFileName}";
+        }
+
+        #region Commented Code
+
+        //[HttpGet("GetAllCategories")]
+        //public ActionResult<IEnumerable<CategoryDto>> GetCategories()
+        //{
+        //    var categories = _productRepository.GetAllCategoriesAsync();
+        //    var categoriesList = categories.Result.Select(c => _mapper.Map<CategoryDto>(c)).ToList();
+        //    return Ok(categoriesList);
+        //}
+
+        //[HttpGet("GetAllSubCategories")]
+        //public ActionResult<IEnumerable<SubCategoryDto>> GetSubCategories()
+        //{
+        //    var subCategories = _productRepository.GetAllSubCategoriesAsync();
+        //    var subCategoriesList = subCategories.Result.Select(c => _mapper.Map<SubCategoryDto>(c)).ToList();
+        //    return Ok(subCategoriesList);
+        //}
+
+        //[HttpGet("GetSubCategoriesById/{categoryId}")]
+        //public ActionResult<IEnumerable<SubCategoryDto>> GetSubCategoriesById(int categoryId)
+        //{
+        //    var subCategories = _productRepository.GetSubCategoriesByIdAsync(categoryId);
+        //    var subCategoriesList = subCategories.Result.Select(c => _mapper.Map<SubCategoryDto>(c)).ToList();
+        //    return Ok(subCategoriesList);
+        //}
+#endregion
     }
 }

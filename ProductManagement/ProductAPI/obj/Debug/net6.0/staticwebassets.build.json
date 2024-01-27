@@ -1,11 +1,71 @@
 {
   "Version": 1,
-  "Hash": "2H5PC1aX8gkjhL877gKRtXzzUGd64UQPBMnafn488Po=",
+  "Hash": "sEWNtHMG/7Yrs4kpa4MKMgzY3QdETvHuutAnl4Fp/wc=",
   "Source": "ProductAPI",
   "BasePath": "_content/ProductAPI",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "ProductAPI\\wwwroot",
+      "Source": "ProductAPI",
+      "ContentRoot": "C:\\Users\\bhanu.gadi\\Desktop\\ProductManagement\\project-management-system\\ProductManagement\\ProductAPI\\wwwroot\\",
+      "BasePath": "_content/ProductAPI",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\bhanu.gadi\\Desktop\\ProductManagement\\project-management-system\\ProductManagement\\ProductAPI\\wwwroot\\uploads\\0_9647c4c9-6a82-484d-b095-3b73ce36f5f8_tvimage.jpg",
+      "SourceId": "ProductAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\bhanu.gadi\\Desktop\\ProductManagement\\project-management-system\\ProductManagement\\ProductAPI\\wwwroot\\",
+      "BasePath": "_content/ProductAPI",
+      "RelativePath": "uploads/0_9647c4c9-6a82-484d-b095-3b73ce36f5f8_tvimage.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\0_9647c4c9-6a82-484d-b095-3b73ce36f5f8_tvimage.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\bhanu.gadi\\Desktop\\ProductManagement\\project-management-system\\ProductManagement\\ProductAPI\\wwwroot\\uploads\\0_c1b64ace-0189-467c-b6af-1500b6c8eb2c_tvimage.jpg",
+      "SourceId": "ProductAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\bhanu.gadi\\Desktop\\ProductManagement\\project-management-system\\ProductManagement\\ProductAPI\\wwwroot\\",
+      "BasePath": "_content/ProductAPI",
+      "RelativePath": "uploads/0_c1b64ace-0189-467c-b6af-1500b6c8eb2c_tvimage.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\0_c1b64ace-0189-467c-b6af-1500b6c8eb2c_tvimage.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\bhanu.gadi\\Desktop\\ProductManagement\\project-management-system\\ProductManagement\\ProductAPI\\wwwroot\\uploads\\0_cfa99f51-fe41-44e3-b55d-c287a80cbe62_tvimage.jpg",
+      "SourceId": "ProductAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\bhanu.gadi\\Desktop\\ProductManagement\\project-management-system\\ProductManagement\\ProductAPI\\wwwroot\\",
+      "BasePath": "_content/ProductAPI",
+      "RelativePath": "uploads/0_cfa99f51-fe41-44e3-b55d-c287a80cbe62_tvimage.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\0_cfa99f51-fe41-44e3-b55d-c287a80cbe62_tvimage.jpg"
+    }
+  ]
 }

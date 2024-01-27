@@ -11,9 +11,9 @@ namespace ProductAPI.Repository.Contracts
         Task<IEnumerable<Product>> GetProductsByCategoryAndSubCategoryAsync(int? categoryId, int? subCategoryId);
         Task<Product> GetProductByIdAsync(int productId);
         Task<Product> GetProductByCodeAsync(string productCode);
-        Task<IEnumerable<Category>> GetAllCategoriesAsync();
-        Task<IEnumerable<SubCategory>> GetAllSubCategoriesAsync();
-        Task<IEnumerable<SubCategory>> GetSubCategoriesByIdAsync(int categoryId);
+        //Task<IEnumerable<Category>> GetAllCategoriesAsync();
+        //Task<IEnumerable<SubCategory>> GetAllSubCategoriesAsync();
+        //Task<IEnumerable<SubCategory>> GetSubCategoriesByIdAsync(int categoryId);
         Task<Product> AddProductAsync(Product product);
         Task UpdateProductAsync(Product product);
         Task DeleteProductAsync(Product product);

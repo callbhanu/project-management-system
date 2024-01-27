@@ -21,40 +21,6 @@ namespace ProductAPI.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("ProductAPI.Models.Category", b =>
-                {
-                    b.Property<int>("CategoryId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryId"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("CategoryId");
-
-                    b.ToTable("Categories");
-
-                    b.HasData(
-                        new
-                        {
-                            CategoryId = 1,
-                            Name = "Electronics"
-                        },
-                        new
-                        {
-                            CategoryId = 2,
-                            Name = "Apparel"
-                        },
-                        new
-                        {
-                            CategoryId = 3,
-                            Name = "Footwear"
-                        });
-                });
-
             modelBuilder.Entity("ProductAPI.Models.Product", b =>
                 {
                     b.Property<int>("ProductId")
@@ -63,12 +29,13 @@ namespace ProductAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductId"));
 
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImageUrl")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -90,14 +57,13 @@ namespace ProductAPI.Migrations
 
                     b.HasKey("ProductId");
 
-                    b.HasIndex("SubCategoryId");
-
                     b.ToTable("Products");
 
                     b.HasData(
                         new
                         {
                             ProductId = 1,
+                            CategoryId = 1,
                             Description = "High-quality Smart LED TV",
                             ImageUrl = "tv1.jpg",
                             Name = "Smart LED TV",
@@ -109,6 +75,7 @@ namespace ProductAPI.Migrations
                         new
                         {
                             ProductId = 2,
+                            CategoryId = 1,
                             Description = "4K Ultra HD TV with HDR",
                             ImageUrl = "tv2.jpg",
                             Name = "4K Ultra HD TV",
@@ -120,6 +87,7 @@ namespace ProductAPI.Migrations
                         new
                         {
                             ProductId = 3,
+                            CategoryId = 1,
                             Description = "Latest Android smartphone",
                             ImageUrl = "phone1.jpg",
                             Name = "Android Smartphone",
@@ -131,6 +99,7 @@ namespace ProductAPI.Migrations
                         new
                         {
                             ProductId = 4,
+                            CategoryId = 1,
                             Description = "Latest iPhone with advanced features",
                             ImageUrl = "phone2.jpg",
                             Name = "iPhone 13",
@@ -142,6 +111,7 @@ namespace ProductAPI.Migrations
                         new
                         {
                             ProductId = 5,
+                            CategoryId = 1,
                             Description = "French door refrigerator with water dispenser",
                             ImageUrl = "fridge1.jpg",
                             Name = "French Door Refrigerator",
@@ -153,6 +123,7 @@ namespace ProductAPI.Migrations
                         new
                         {
                             ProductId = 6,
+                            CategoryId = 1,
                             Description = "Top freezer refrigerator with adjustable shelves",
                             ImageUrl = "fridge2.jpg",
                             Name = "Top Freezer Refrigerator",
@@ -164,6 +135,7 @@ namespace ProductAPI.Migrations
                         new
                         {
                             ProductId = 7,
+                            CategoryId = 2,
                             Description = "Comfortable and stylish casual t-shirt for men",
                             ImageUrl = "tshirt1.jpg",
                             Name = "Casual T-Shirt",
@@ -175,6 +147,7 @@ namespace ProductAPI.Migrations
                         new
                         {
                             ProductId = 8,
+                            CategoryId = 2,
                             Description = "Slim fit jeans for a trendy look",
                             ImageUrl = "jeans1.jpg",
                             Name = "Slim Fit Jeans",
@@ -186,6 +159,7 @@ namespace ProductAPI.Migrations
                         new
                         {
                             ProductId = 9,
+                            CategoryId = 2,
                             Description = "Elegant maxi dress for women",
                             ImageUrl = "dress1.jpg",
                             Name = "Maxi Dress",
@@ -197,6 +171,7 @@ namespace ProductAPI.Migrations
                         new
                         {
                             ProductId = 10,
+                            CategoryId = 2,
                             Description = "Stylish blouse for a chic look",
                             ImageUrl = "blouse1.jpg",
                             Name = "Blouse",
@@ -208,6 +183,7 @@ namespace ProductAPI.Migrations
                         new
                         {
                             ProductId = 11,
+                            CategoryId = 3,
                             Description = "Comfortable sneakers for men",
                             ImageUrl = "sneakers1.jpg",
                             Name = "Sneakers",
@@ -219,6 +195,7 @@ namespace ProductAPI.Migrations
                         new
                         {
                             ProductId = 12,
+                            CategoryId = 3,
                             Description = "Classic formal shoes for men",
                             ImageUrl = "formalshoes1.jpg",
                             Name = "Formal Shoes",
@@ -230,6 +207,7 @@ namespace ProductAPI.Migrations
                         new
                         {
                             ProductId = 13,
+                            CategoryId = 3,
                             Description = "Fun light-up sneakers for kids",
                             ImageUrl = "kidsneakers1.jpg",
                             Name = "Light-up Sneakers",
@@ -241,6 +219,7 @@ namespace ProductAPI.Migrations
                         new
                         {
                             ProductId = 14,
+                            CategoryId = 3,
                             Description = "Colorful rain boots for kids",
                             ImageUrl = "rainboots1.jpg",
                             Name = "Rain Boots",
@@ -249,104 +228,6 @@ namespace ProductAPI.Migrations
                             Quantity = 20,
                             SubCategoryId = 7
                         });
-                });
-
-            modelBuilder.Entity("ProductAPI.Models.SubCategory", b =>
-                {
-                    b.Property<int>("SubCategoryId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SubCategoryId"));
-
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("SubCategoryId");
-
-                    b.HasIndex("CategoryId");
-
-                    b.ToTable("SubCategories");
-
-                    b.HasData(
-                        new
-                        {
-                            SubCategoryId = 1,
-                            CategoryId = 1,
-                            Name = "TVs"
-                        },
-                        new
-                        {
-                            SubCategoryId = 2,
-                            CategoryId = 1,
-                            Name = "Mobiles"
-                        },
-                        new
-                        {
-                            SubCategoryId = 3,
-                            CategoryId = 1,
-                            Name = "Refrigerators"
-                        },
-                        new
-                        {
-                            SubCategoryId = 4,
-                            CategoryId = 2,
-                            Name = "Men's Clothing"
-                        },
-                        new
-                        {
-                            SubCategoryId = 5,
-                            CategoryId = 2,
-                            Name = "Women's Clothing"
-                        },
-                        new
-                        {
-                            SubCategoryId = 6,
-                            CategoryId = 3,
-                            Name = "Men's Footwear"
-                        },
-                        new
-                        {
-                            SubCategoryId = 7,
-                            CategoryId = 3,
-                            Name = "Kid's Footwear"
-                        });
-                });
-
-            modelBuilder.Entity("ProductAPI.Models.Product", b =>
-                {
-                    b.HasOne("ProductAPI.Models.SubCategory", "SubCategory")
-                        .WithMany("Products")
-                        .HasForeignKey("SubCategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("SubCategory");
-                });
-
-            modelBuilder.Entity("ProductAPI.Models.SubCategory", b =>
-                {
-                    b.HasOne("ProductAPI.Models.Category", "Category")
-                        .WithMany("SubCategories")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Category");
-                });
-
-            modelBuilder.Entity("ProductAPI.Models.Category", b =>
-                {
-                    b.Navigation("SubCategories");
-                });
-
-            modelBuilder.Entity("ProductAPI.Models.SubCategory", b =>
-                {
-                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }

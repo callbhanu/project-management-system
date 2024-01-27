@@ -11,8 +11,8 @@ namespace ProductAPI.Dto
         public decimal Price { get; set; }
         public string ProductDescription { get; set; }
         public string Image { get; set; }
-        public string CategoryName { get; set; }
-        public string SubcategoryName { get; set; }
+        //public string CategoryName { get; set; }
+        //public string SubcategoryName { get; set; }
 
         public int CategoryId { get; set; }
         public int SubCategoryId { get; set; }

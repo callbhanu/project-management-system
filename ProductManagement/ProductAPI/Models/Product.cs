@@ -13,11 +13,9 @@ namespace ProductAPI.Models
         public int Quantity { get; set; }
         [Required]
         public decimal Price { get; set; }
-        public string Description { get; set; }
-        public string ImageUrl { get; set; }
-
-        [ForeignKey("SubCategory")]
+        public string? Description { get; set; }
+        public string? ImageUrl { get; set; }
         public int SubCategoryId { get; set; }
-        public SubCategory SubCategory { get; set; }
+        public int CategoryId { get; set; }
     }
 }
